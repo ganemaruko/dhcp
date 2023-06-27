@@ -1,16 +1,16 @@
 version: '3.4'
 services:
-  development:
+  rust:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./docker/rust/Dockerfile
     volumes:
-      - ..:/vscode:delegated
+      - .:/workspace:delegated
       # For building dependencies always use a volume, you get waaaay better performance.
-      - target:/vscode/target
+      - target:/workspace/target
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
-    working_dir: /vscode
+    working_dir: /workspace
 volumes:
   # The volume for cargo build
-  target:
+  target: 
